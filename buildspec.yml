@@ -4,14 +4,19 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo "installing dependencies..."
+      - echo "Installing dependencies..."
       - npm install
       - npm install -g @angular/cli@16.1.7
-    build:
-      commands:
-        - echo "building angular project...."
-        - ng build --prod
-    post-build:
-      commands:
-        - echo "updating files in s3 bucket..."
-        - aws s3 sync dist/s3-angular-repo/ s3://static-website-demo-007 --delete
+  build:
+    commands:
+      - echo "Building Angular project..."
+      - ng build --configuration production
+  post_build:
+    commands:
+      - echo "Updating files in S3 bucket..."
+      - aws s3 sync dist/s3-angular-repo/ s3://static-website-demo-007 --delete
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist/s3-angular-repo
+
