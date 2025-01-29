@@ -16,9 +16,5 @@ phases:
       - echo "Listing Files in dist/"
       - ls -R dist/
       - echo "updating Files in s3 bucket..."
-      - aws s3 sync dist/s3-angular-repo/ s3://static-website-demo-007 --delete --region eu-north-1
-artifacts:
-  files:
-    - '**/*'
-  base-directory: dist/s3-angular-repo
+      - aws s3 sync dist/cloud-cicd/s3-angular-repo/ s3://static-website-demo-007 --delete
 
