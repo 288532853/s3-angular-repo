@@ -17,4 +17,5 @@ phases:
       - ls -R dist/
       - echo "updating Files in s3 bucket..."
       - aws s3 sync dist/cloud-cicd/ s3://static-website-demo-007 --delete
+      - aws cloudfromt create-imvalidation -- distribution-id=E2SZGSO8U3C6DY -- paths '/*
 
